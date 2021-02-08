@@ -1,11 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import * as serviceWorker from './serviceWorker';
 
 // everything in React is JavaScript!
 ReactDOM.render(
-  <h1>Hello world</h1>,
+  <React.StrictMode>
+     <h1>Hello world</h1>
+  </React.StrictMode>,
   document.getElementById('root')
 );
 
+// if you want your app to work offline and load faster
+// then change from unregister(); to register();
+serviceWorker.register();
 
