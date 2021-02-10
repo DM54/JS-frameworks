@@ -5,7 +5,8 @@ import './index.css';
 import  App from './App';
 //const h1element = React.createElement('h1', {className: 'title'},'hello world');
 
-
+const appTitle = "My perfect app!";
+const appnum = 10;
 
 // everything in React is JavaScript!
 ReactDOM.render(
@@ -17,7 +18,9 @@ ReactDOM.render(
     </div> we can write it like this or react version1*/}
     {/*React.createElement('div', {className: 'container'}, React.createElement('h1', {className: 'title'},'hello world'))*/}
     {/*react version2 React.createElement('div', {className: 'container'}, h1element) */}
-    <App/>
+
+    {/*look at the app.js how props is used. (the light blue are props) */}
+    <App title={appTitle} number={appnum}/>
 
   </React.StrictMode>,
   document.getElementById('root')
