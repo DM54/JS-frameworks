@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {Component, useState, useEffect} from 'react';
 import AppView from './AppView';
 
 /*function App(){
@@ -41,6 +41,26 @@ import AppView from './AppView';
     }
   } */
 
+// this is called only once and after render(), and another example of lifecycle
+/* componentDidMount(){
+  this.setState({counter: 100});
+  console.log('calling componentDidMount');
+ }*/
+
+ /*
+ // Executed initialy and every time component will update
+ // this will execute once doesn't matter how many time you click the buttons (in the console).
+  useEffect(() => {
+    console.log('calling useEffect!');
+    setCounter(100);
+  }, [])
+ //this will show how many you execute counter in the console.
+  useEffect(() => {
+    console.log('calling my other useEffect!');
+  }, [counter])
+
+  */
+
  /* state = {
     counter: 0
   }
@@ -59,6 +79,8 @@ import AppView from './AppView';
 
   // function declaration -> function hello(){}
   // function expression -> const hello = () => {}
+
+  //Lifecycle function is called after constructor and every time the component is updated, an example is render()
   render(){
 
   //it can be used in inspect and see how it increment this.state.counter
