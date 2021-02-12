@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from '../components/Header';
 import ResourceDetail from '../components/ResourceDetail';
 import ResourceList from '../components/ResourceList';
 import ResourceSearch from '../components/ResourceSearch';
@@ -9,11 +10,7 @@ const Resources = () => {
 
   return(
     <div className="container">
-    <div className="py-5 text-center">
-    <img style={{height: '150px'}} src={process.env.PUBLIC_URL + '/logo512.png'} />
-    <h2>Keep Resources</h2>
-    <p className="lead">Keep your resource at once place</p>
-  </div>
+    <Header></Header>
   <div className="row">
     <div className="col-md-4 order-md-2 mb-4">
       <h4 className="d-flex justify-content-between align-items-center mb-3">
@@ -28,7 +25,9 @@ const Resources = () => {
       {/* Resource List Ends */}
     </div>
     {/* Update Form Starts */}
+    <div className="col-md-8 order-md-1">
         <ResourceUpdate></ResourceUpdate>
+        </div>
     {/* Update Form Ends */}
     {/* Detail View Starts */}
     <div className="col-md-8 order-md-1">

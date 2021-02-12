@@ -3,7 +3,7 @@ import React from 'react';
 const ResourceUpdate = () => {
 
   return (
-      <div className="col-md-8 order-md-1">
+     <>
           <h4 className="mb-3">Update Resource</h4>
           <form>
             <div className="mb-3">
@@ -27,7 +27,7 @@ const ResourceUpdate = () => {
             <hr className="mb-4" />
             <button className="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
           </form>
-        </div>
+        </>
   )
 }
 
