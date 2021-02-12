@@ -1,23 +1,30 @@
 import React from 'react';
 
-const ResourceDetail = () => {
+const ResourceDetail = ({resource}) => {
+
+  if (!resource?._id) {
+    return (
+      <div className="card">
+        <div className="card-body">
+          No resource selected :(
+        </div>
+      </div>
+    )
+  }
 
   return (
-    <>
-    <h4 className="mb-3">Update Resource</h4>
     <div className="card">
-      <div className="card-header">
-        Resource Name
+        <div className="card-header">
+          {resource.title}
+        </div>
+        <div className="card-body">
+          <blockquote className="blockquote mb-0">
+            <p>{resource.description}</p>
+            <footer className="text-muted mb-2">{resource.type}</footer>
+          </blockquote>
+        </div>
       </div>
-      <div className="card-body">
-        <blockquote className="blockquote mb-0">
-          <p>Resource description...</p>
-          <footer className="text-muted mb-2">Type</footer>
-        </blockquote>
-        <a href="#" className="btn btn-primary">Edit</a>
-      </div>
-    </div>
-  </>
+
   )
 }
 

@@ -4,7 +4,7 @@ const ResourceUpdate = () => {
 
   return (
      <>
-          <h4 className="mb-3">Update Resource</h4>
+
           <form>
             <div className="mb-3">
               <label htmlFor="firstName">Title</label>
