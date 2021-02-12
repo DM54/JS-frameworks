@@ -1,4 +1,4 @@
-import React, {Component, useState, useEffect} from 'react';
+import React, {Component, useState, useEffect } from 'react';
 import AppView from './AppView';
 
 /*function App(){
