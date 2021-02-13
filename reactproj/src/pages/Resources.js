@@ -45,6 +45,7 @@ const Resource = () => {
   }
   const hasResources = resources && resources.length > 0;
   const activeResource = selectedResource || (hasResources && resources[0]) || null;
+  //const activeResource = null;
   return (
     <div className="container">
       <Header />
