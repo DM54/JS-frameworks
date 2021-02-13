@@ -1,10 +1,9 @@
-import React, {useState} from 'react';
-import Header from '../components/Header';
-import ResourceDetail from '../components/ResourceDetail';
-import ResourceList from '../components/ResourceList';
+import React, { useState } from 'react';
 import ResourceSearch from '../components/ResourceSearch';
+import ResourceList from '../components/ResourceList';
+import ResourceDetail from '../components/ResourceDetail';
 import ResourceUpdate from '../components/ResourceUpdate';
-
+import Header from '../components/Header';
 
 const initialResources = [
   {
@@ -14,91 +13,69 @@ const initialResources = [
     link: 'https://google.com',
     type: 'blog'
   },
-
-    {
+  {
     _id: '2',
     title: 'Resource 2',
     description: 'Description 2',
     link: 'https://google.com',
     type: 'video'
   },
-
   {
-  _id: '3',
-  title: 'Resource 3',
-  description: 'Description 3',
-  link: 'https://google.com',
-  type: 'book'
-  },
-
+    _id: '3',
+    title: 'Resource 3',
+    description: 'Description 3',
+    link: 'https://google.com',
+    type: 'book'
+  }
 ]
-
-const Resources = () => {
-  const [selectedResource, setSelectedResource] = useState();
+const Resource = () => {
+  const [selectedResource, setSetlectedResource] = useState();
   const [resources, setResources] = useState(initialResources);
-  const [isdetailview, setDetailview] = useState(true);
-
-  const addResources = () => {
-    const _id = '_' + Math.random.toString(36).substr(2,9);
+  const [isDetailView, setDetailView] = useState(true);
+  const addResource = () => {
+    const _id = '_' + Math.random().toString(36).substr(2, 9);
     const newSource = {
       _id,
-      title: `title ${_id}`,
-      description: `description ${_id}`,
+      title: `Title ${_id}`,
+      description: `Description ${_id}`,
       link: 'https://google.com',
       type: 'video'
     }
-
-    //to add new source at top -> setResources([newSource, ...resources]);
-    setResources([...resources, newSource]);
+    setResources([newSource, ...resources]);
   }
-
   const hasResources = resources && resources.length > 0;
   const activeResource = selectedResource || (hasResources && resources[0]) || null;
-
-
-  return(
+  return (
     <div className="container">
-    <Header></Header>
-  <div className="row">
-    <div className="col-md-4 order-md-2 mb-4">
-      <h4 className="d-flex justify-content-between align-items-center mb-3">
-        <span className="text-muted">Your Resources</span>
-        <span className="badge badge-secondary badge-pill">6</span>
-      </h4>
-      {/* Seach Inputs Starts */}
-          <ResourceSearch></ResourceSearch>
-      {/* Seach Inputs Ends */}
-      {/* Resource List Starts */}
-        <ResourceList
-        activeId={activeResource?._id}
-        onItemClick = {setSelectedResource}
-        resources ={resources}></ResourceList>
-        <button onClick={addResources} className='btn btn-primary'>Add Resources</button>
-      {/* Resource List Ends */}
-    </div>
-    {/* Update Form Starts */}
-    <div className="col-md-8 order-md-1">
-      <h4 className="mb-3"> Resource {activeResource?._id}
-      <button onClick={ () => setDetailview(!isdetailview)}  className= {`btn btn-sm ml-2 ${isdetailview ? 'btn-warning' : 'btn-primary'}`}>
-        { isdetailview ? 'edit' : 'Detail'}
-      </button>
-      </h4>
-      {/*if detailview is true display resourcedetail if it is false display resourceupdate. */}
-      {
-        isdetailview ? <ResourceDetail resource = {{...activeResource}}></ResourceDetail> : <ResourceUpdate></ResourceUpdate>
-      }
-
+      <Header />
+      <div className="row">
+        <div className="col-md-4 order-md-2 mb-4">
+          <h4 className="d-flex justify-content-between align-items-center mb-3">
+            <span className="text-muted">Your Resources</span>
+            <span className="badge badge-secondary badge-pill">6</span>
+          </h4>
+          <ResourceSearch />
+          <ResourceList
+            activeId={activeResource?._id}
+            onItemClick={setSetlectedResource}
+            resources={resources} />
+          <button onClick={addResource} className="btn btn-primary">Add Resource</button>
         </div>
-    {/* Update Form Ends */}
-    {/* Detail View Starts */}
+        <div className="col-md-8 order-md-1">
 
-    {/* Detail View Ends */}
-  </div>
-</div>
-
+          <h4 className="mb-3">Resource {activeResource?._id}
+            <button
+              onClick={() => setDetailView(!isDetailView)}
+              className={`btn btn-sm ml-2 ${isDetailView ? 'btn-warning' : 'btn-primary'}`}>
+              { isDetailView ? 'Edit' : 'Detail'}
+            </button>
+          </h4>
+          { isDetailView ?
+            <ResourceDetail resource={{...activeResource}} /> :
+            <ResourceUpdate /> }
+        </div>
+      </div>
+    </div>
   )
-
-
 }
-
-export default Resources;
+export default Resource;
