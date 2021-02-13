@@ -62,8 +62,8 @@ useEffect(() => {
             </button>
           </h4>
           { isDetailView ?
-            <ResourceDetail resource={{...activeResource}} /> :
-            <ResourceUpdate /> }
+            <ResourceDetail resource={activeResource} /> :
+            <ResourceUpdate resource = {activeResource} /> }
         </div>
       </div>
     </div>
