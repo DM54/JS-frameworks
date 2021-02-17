@@ -33,6 +33,13 @@ useEffect(() => {
     }
     setResources([newSource, ...resources]);
   }
+
+  const handleResourceUpdate = updatedResource => {
+    // TOOD: Update resource list!
+    alert(JSON.stringify(updatedResource));
+  }
+
+
   const hasResources = resources && resources.length > 0;
   const activeResource = selectedResource || (hasResources && resources[0]) || null;
   //const activeResource = null;
@@ -63,7 +70,8 @@ useEffect(() => {
           </h4>
           { isDetailView ?
             <ResourceDetail resource={activeResource} /> :
-            <ResourceUpdate resource = {activeResource} /> }
+            <ResourceUpdate resource = {activeResource}
+               onResourceupdate={handleResourceUpdate} /> }
         </div>
       </div>
     </div>

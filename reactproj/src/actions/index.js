@@ -8,9 +8,8 @@ export function getResources() {
 
 }
 
-export function UpdateResourcesApi({reourceID, ressourceData})
-{
+export function updateResourceApi(resourceId, resourceData) {
   return axios
-  .patch(`'http://localhost:3000/api/resources/${reourceID}'`, ressourceData)
-  .then(res => res.data);
+    .patch(`http://localhost:3000/api/resources/${resourceId}`, resourceData)
+    .then(res => res.data)
 }
