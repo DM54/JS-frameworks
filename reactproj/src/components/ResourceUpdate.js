@@ -17,7 +17,8 @@ const ResourceUpdate = ({resource, onResourceUpdate}) => {
       // set success alert
       _alert.success = 'Resource was updated!';
       setAlert(_alert);
-    } catch(e) {
+    }
+    catch(e) {
       _alert.error = "resource was not updated";
       setAlert(_alert);
     }
