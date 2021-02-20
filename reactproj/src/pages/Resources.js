@@ -22,7 +22,7 @@ useEffect(() => {
   _getResources();
 }, [])
 
-  const addResource = () => {
+  /*const addResource = () => {
     const _id = '_' + Math.random().toString(36).substr(2, 9);
     const newSource = {
       _id,
@@ -32,11 +32,25 @@ useEffect(() => {
       type: 'video'
     }
     setResources([newSource, ...resources]);
+  }*/
+
+  const findresourceindex = resource =>{
+    return resources.findIndex( re => re._id === resource._id);
   }
 
+  const updatedResourcesList = resource => {
+
+     const ResourceIndex = findresourceindex(resource);
+     const copy = [...resources];
+     copy[ResourceIndex] = resource;
+     return copy;
+    }
+
   const handleResourceUpdate = updatedResource => {
-    // TOOD: Update resource list!
-    alert(JSON.stringify(updatedResource));
+    const updatedResources = updatedResourcesList(updatedResource);
+
+    setResources(updatedResources);
+    setSetlectedResource(updatedResource);
   }
 
 
@@ -50,14 +64,14 @@ useEffect(() => {
         <div className="col-md-4 order-md-2 mb-4">
           <h4 className="d-flex justify-content-between align-items-center mb-3">
             <span className="text-muted">Your Resources</span>
-            <span className="badge badge-secondary badge-pill">6</span>
+            <span className="badge badge-secondary badge-pill">{resources.length}</span>
           </h4>
           <ResourceSearch />
           <ResourceList
             activeId={activeResource?._id}
             onItemClick={setSetlectedResource}
             resources={resources} />
-          <button onClick={addResource} className="btn btn-primary">Add Resource</button>
+         {/*<button onClick={addResource} className="btn btn-primary">Add Resource</button>*/}
         </div>
         <div className="col-md-8 order-md-1">
 
