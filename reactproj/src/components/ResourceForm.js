@@ -1,9 +1,13 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 const Resource_Type = ["Blog", "Video", "Book"];
 
-const ResourceForm = ({resource, onSubmit}) => {
+const ResourceForm = ({resource, onSubmit, alert}) => {
   const [uResource, setUResource] = useState(resource);
+
+  useEffect(() => {
+    setUResource(resource);
+  }, [resource])
 
   const handleChange = (e) => {
   const {name, value} = e.target;
@@ -16,7 +20,10 @@ const ResourceForm = ({resource, onSubmit}) => {
 
   return (
 
-            <form>
+         <>
+          {alert?.success}
+          {alert?.error}
+           <form>
             <div className="mb-3">
               <label htmlFor="title">Title</label>
               <input
@@ -68,6 +75,7 @@ const ResourceForm = ({resource, onSubmit}) => {
             <hr className="mb-4" />
             <button onClick={handleSubmit} className="btn btn-primary btn-lg btn-block" type="button">Submit</button>
           </form>
+          </>
 
   )
 
