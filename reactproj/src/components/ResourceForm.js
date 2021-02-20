@@ -23,6 +23,7 @@ const ResourceForm = ({resource, onSubmit, alert}) => {
          <>
           {alert?.success}
           {alert?.error}
+
            <form>
             <div className="mb-3">
               <label htmlFor="title">Title</label>
@@ -75,7 +76,7 @@ const ResourceForm = ({resource, onSubmit, alert}) => {
             <hr className="mb-4" />
             <button onClick={handleSubmit} className="btn btn-primary btn-lg btn-block" type="button">Submit</button>
           </form>
-          </>
+   </>
 
   )
 

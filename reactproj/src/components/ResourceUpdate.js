@@ -3,7 +3,7 @@ import ResourceForm from "./ResourceForm";
 import { updateResourceApi} from '../actions';
 
 
-const createAlert = () =>  ({success: null, error: null})
+const createAlert = () => ({success: null, error: null})
 
 
 const ResourceUpdate = ({resource, onResourceUpdate}) => {
@@ -18,16 +18,15 @@ const ResourceUpdate = ({resource, onResourceUpdate}) => {
       _alert.success = 'Resource was updated!';
       setAlert(_alert);
     } catch(e) {
-      _alert.error = e;
+      _alert.error = "resource was not updated";
       setAlert(_alert);
     }
-
-
+  }
    return(
  <ResourceForm  alert={alert} onSubmit={UpdateResources} resource={resource}></ResourceForm>
   )
 
-  }
+
 }
 
 export default ResourceUpdate;
