@@ -1,32 +1,39 @@
-import React, {useEffect, useState} from 'react';
 
-const Resource_Type = ["Blog", "Video", "Book"];
+
+import React, { useState, useEffect } from 'react';
+const RESOURCE_TYPES = ['blog', 'video', 'book'];
+const BASE_RESOURCE = {
+  title: '',
+  description: '',
+  type: '',
+  link: ''
+}
 
 const ResourceForm = ({resource, onSubmit, alert}) => {
-  const [uResource, setUResource] = useState(resource);
+  const [uResource, setUResource] = useState(resource || BASE_RESOURCE);
 
   useEffect(() => {
-    setUResource(resource);
+    resource?._id ? setUResource(resource) : setUResource(BASE_RESOURCE);
   }, [resource])
 
   const handleChange = (e) => {
-  const {name, value} = e.target;
- setUResource({...uResource, [name]: value});
+    const { name, value } = e.target;
+    setUResource({...uResource, [name]: value})
   }
 
   const handleSubmit = () => {
-    onSubmit(uResource);
+    onSubmit(uResource)
   }
 
   return (
     <>
-    { alert?.success &&
+      { alert?.success &&
         <div className="alert alert-success">{alert.success}</div>
       }
       { alert?.error &&
         <div className="alert alert-danger">{alert.error}</div>
       }
-      <form>
+      <form className="resource-form">
         <div className="mb-3">
           <label htmlFor="title">Title</label>
           <input
@@ -69,7 +76,7 @@ const ResourceForm = ({resource, onSubmit, alert}) => {
             name="type"
             value={uResource.type}
             id="type">
-            { Resource_Type.map(type =>
+            { RESOURCE_TYPES.map(type =>
               <option key={type} value={type}>{type}</option>
               )
             }
@@ -84,6 +91,5 @@ const ResourceForm = ({resource, onSubmit, alert}) => {
     </>
   )
 }
-
 
 export default ResourceForm;
