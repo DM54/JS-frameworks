@@ -1,30 +1,30 @@
 import React, { useState } from 'react';
-import ResourceForm from "./ResourceForm";
-import { updateResourceApi} from '../actions';
-
+import ResourceForm from './ResourceForm';
+import { updateResourceApi } from '../actions';
 
 const createAlert = () => ({success: null, error: null})
-
-
 const ResourceUpdate = ({resource, onResourceUpdate}) => {
   const [alert, setAlert] = useState(createAlert());
 
-  const UpdateResources = async(resourceData) =>{
+
+  const displayAlert = (type, message) => {
     const _alert = createAlert();
+    _alert[type] = message;
+    setAlert(_alert);
+  }
+
+  const updateResource = async (resourceData) => {
     try {
       const updatedResource = await updateResourceApi(resourceData._id, resourceData);
       onResourceUpdate(updatedResource);
-      // set success alert
-      _alert.success = 'Resource was updated!';
-      setAlert(_alert);
+      displayAlert('success', 'Resource was updated!');
     }
     catch(e) {
-      _alert.error = "resource was not updated";
-      setAlert(_alert);
+      displayAlert('error', e);
     }
   }
    return(
- <ResourceForm  alert={alert} onSubmit={UpdateResources} resource={resource}></ResourceForm>
+ <ResourceForm  alert={alert} onSubmit={updateResource} resource={resource}></ResourceForm>
   )
 
 
