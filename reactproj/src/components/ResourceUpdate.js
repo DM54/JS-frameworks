@@ -5,7 +5,9 @@ import { updateResourceApi } from '../actions';
 
 const initAlert = () => ({success: null, error: null})
 
-const ResourceUpdate = ({resourceS, onResourceUpdate}) => {
+
+  const ResourceUpdate = ({resource, onResourceupdate}) => {
+
 
   const [alert, setAlert] = useState(initAlert());
   const settimeoutid = useRef(null);
@@ -15,7 +17,7 @@ const ResourceUpdate = ({resourceS, onResourceUpdate}) => {
   useEffect(() => {
     resetAlert();
     settimeoutid?.current && clearTimeout(settimeoutid.current);
-  }, [resourceS]);
+  }, [resource]);
 
   const displayAlert = (type, message) => {
 
@@ -31,8 +33,8 @@ const ResourceUpdate = ({resourceS, onResourceUpdate}) => {
   const updateResource = async (resourceData) => {
     try {
       const updatedResourcess = await updateResourceApi(resourceData._id, resourceData);
-      onResourceUpdate(updatedResourcess);
-      displayAlert('success', 'Resouce was updated!');
+       onResourceupdate(updatedResourcess);
+      displayAlert('success', 'Resource was updated!');
     } catch(e) {
       displayAlert('error', e);
     }
@@ -41,7 +43,7 @@ const ResourceUpdate = ({resourceS, onResourceUpdate}) => {
     <ResourceForm
       alert={alert}
       onSubmit={updateResource}
-      resourceS={resourceS} />
+      resource={resource} />
   )
 }
 export default ResourceUpdate;
