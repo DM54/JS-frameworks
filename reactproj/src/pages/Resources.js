@@ -5,7 +5,7 @@ import ResourceDetail from '../components/ResourceDetail';
 import ResourceUpdate from '../components/ResourceUpdate';
 import Header from '../components/Header';
 
-import { getResources } from '../actions';
+import { getResources, deleteResourceApi } from '../actions';
 
 
 const Resource = () => {
@@ -38,21 +38,50 @@ useEffect(() => {
     return resources.findIndex( re => re._id === resource._id);
   }
 
-  const updatedResourcesList = resource => {
+  const mutateResourcesList = (resource, task )=> {
 
      const ResourceIndex = findresourceindex(resource);
      const copy = [...resources];
-     copy[ResourceIndex] = resource;
+
+     if(task==='update'){
+      copy[ResourceIndex] = resource;
+     }
+     else{
+      //delete the resource index, just 1
+      copy.splice(ResourceIndex,1);
+     }
+
      return copy;
     }
 
-  const handleResourceUpdate = updatedResource => {
-    const updatedResources = updatedResourcesList(updatedResource);
+    const hydrateResources = (updatedResource, task)=> {
+      const updatedResources = mutateResourcesList(updatedResource, task);
 
-    setResources(updatedResources);
+      setResources(updatedResources);
+
+      return updatedResources;
+
+    }
+
+  const handleResourceUpdate = updatedResource => {
+    hydrateResources(updatedResource, 'update');
     setSetlectedResource(updatedResource);
   }
 
+  const deleteResources = async () => {
+    const isConfirm = window.confirm('Are you sure you want to delete this resource?');
+
+    if(isConfirm){
+     const deletedResource= await deleteResourceApi(activeResource?._id);
+     const updatedResources= hydrateResources(deletedResource, 'delete')
+      //set the resource whichever it is there set it first and if none then null.
+      setSetlectedResource(updatedResources[0] || null );
+  //check if there aren't any resources left.
+     if(updatedResources.length=== 0 && !isDetailView){
+       setDetailView(true);
+     }
+    }
+  }
 
   const hasResources = resources && resources.length > 0;
   const activeResource = selectedResource || (hasResources && resources[0]) || null;
@@ -76,11 +105,17 @@ useEffect(() => {
         <div className="col-md-8 order-md-1">
 
           <h4 className="mb-3">Resource {activeResource?._id}
-            <button
+          { hasResources &&
+            <>
+              <button
               onClick={() => setDetailView(!isDetailView)}
-              className={`btn btn-sm ml-2 ${isDetailView ? 'btn-warning' : 'btn-primary'}`}>
+              className={`btn btn-sm ml-2 mr-2 ${isDetailView ? 'btn-warning' : 'btn-primary'}`}>
               { isDetailView ? 'Edit' : 'Detail'}
             </button>
+            <button  onClick= {deleteResources} className="btn btn-danger btn-sm"> Delete</button>
+            </>
+          }
+
           </h4>
           { isDetailView ?
             <ResourceDetail resource={activeResource} /> :

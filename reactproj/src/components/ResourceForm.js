@@ -13,6 +13,7 @@ const ResourceForm = ({resource, onSubmit, alert}) => {
   const [uResource, setUResource] = useState(resource || BASE_RESOURCE);
 
   useEffect(() => {
+    //checking if there are resources, if not then it is base resource which is empty string.
     resource?._id ? setUResource(resource) : setUResource(BASE_RESOURCE);
   }, [resource])
 

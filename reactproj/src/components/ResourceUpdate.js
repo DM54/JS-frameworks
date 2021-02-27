@@ -1,34 +1,17 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React  from 'react';
 import ResourceForm from './ResourceForm';
 import { updateResourceApi } from '../actions';
+import withAlert from '../HOC/withAlert';
 
 
-const initAlert = () => ({success: null, error: null})
+ //this is receving from withAlert
+  const ResourceUpdate = ({
+    resource,
+    onResourceupdate,
+    alert,
+    displayAlert}) => {
 
 
-  const ResourceUpdate = ({resource, onResourceupdate}) => {
-
-
-  const [alert, setAlert] = useState(initAlert());
-  const settimeoutid = useRef(null);
-
-  const resetAlert = () => setAlert(initAlert());
-
-  useEffect(() => {
-    resetAlert();
-    settimeoutid?.current && clearTimeout(settimeoutid.current);
-  }, [resource]);
-
-  const displayAlert = (type, message) => {
-
-    const _alert = initAlert();
-    _alert[type] = message;
-    setAlert(_alert);
-    settimeoutid.current= setTimeout(() => {
-
-      resetAlert();
-    }, 3000);
-  }
 
   const updateResource = async (resourceData) => {
     try {
@@ -46,4 +29,7 @@ const initAlert = () => ({success: null, error: null})
       resource={resource} />
   )
 }
-export default ResourceUpdate;
+export default withAlert(ResourceUpdate);
+
+// withAlert => ResourceUpdate
+//withAlert is responsible for rendering ResourceUpdate
