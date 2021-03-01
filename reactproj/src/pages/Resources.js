@@ -3,7 +3,6 @@ import ResourceSearch from '../components/ResourceSearch';
 import ResourceList from '../components/ResourceList';
 import ResourceDetail from '../components/ResourceDetail';
 import ResourceUpdate from '../components/ResourceUpdate';
-import Header from '../components/Header';
 
 import { getResources, deleteResourceApi } from '../actions';
 
@@ -87,8 +86,7 @@ useEffect(() => {
   const activeResource = selectedResource || (hasResources && resources[0]) || null;
   //const activeResource = null;
   return (
-    <div className="container">
-      <Header />
+
       <div className="row">
         <div className="col-md-4 order-md-2 mb-4">
           <h4 className="d-flex justify-content-between align-items-center mb-3">
@@ -123,7 +121,7 @@ useEffect(() => {
                onResourceupdate={handleResourceUpdate} /> }
         </div>
       </div>
-    </div>
+
   )
 }
 export default Resource;
