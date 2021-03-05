@@ -4,10 +4,14 @@ import {useGetResource, useGetResources} from '../actions/index';
 
 const ResourceDetails = () =>{
   const {id} = useParams();
-  const {resource, loading } = useGetResource(id);
+  const {resource, loading, error } = useGetResource(id);
 
   if (loading){
     return 'is loading';
+  }
+
+  if(error){
+    return ' resource cannot load.';
   }
   return (
     <div className="card">

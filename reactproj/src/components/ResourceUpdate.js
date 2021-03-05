@@ -22,6 +22,10 @@ import withAlert from '../HOC/withAlert';
       displayAlert('error', e);
     }
   }
+
+  if(!resource?._id){
+    return 'resource is not available';
+  }
   return (
     <ResourceForm
       alert={alert}

@@ -4,12 +4,12 @@ import ResourceList from '../components/ResourceList';
 import ResourceDetail from '../components/ResourceDetail';
 import ResourceUpdate from '../components/ResourceUpdate';
 
-import { getResources, deleteResourceApi, useGetResource, useGetResources } from '../actions';
+import { getResources, deleteResourceApi, searchResourcesApi, useGetResources } from '../actions';
 
 
 const Resource = () => {
   const [selectedResource, setSetlectedResource] = useState();
-  const {resources, setResources, loading} = useGetResources();
+  const {resources, setResources, loading, refetchResources} = useGetResources();
   const [isDetailView, setDetailView] = useState(true);
 
 useEffect(() => {
@@ -37,6 +37,16 @@ useEffect(() => {
     return resources.findIndex( re => re._id === resource._id);
   }
 
+  const searchResources = (title) => {
+     //TODO: to refetch resources
+  if(!title){
+    refetchResources();
+  }
+    searchResourcesApi(title)
+    .then(resources => {
+      resources.length >0 ? setSetlectedResource(resources[0]) : setSetlectedResource(null)
+      setResources(resources)})
+  }
   const mutateResourcesList = (resource, task )=> {
 
      const ResourceIndex = findresourceindex(resource);
@@ -96,7 +106,7 @@ useEffect(() => {
             <span className="text-muted">Your Resources</span>
             <span className="badge badge-secondary badge-pill">{resources.length}</span>
           </h4>
-          <ResourceSearch />
+          <ResourceSearch onSearch={searchResources} />
           {loading ? 'loading resources':
           <ResourceList
             activeId={activeResource?._id}

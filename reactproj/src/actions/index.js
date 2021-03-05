@@ -8,6 +8,7 @@ export function getResources() {
 }
 
 export function searchResourcesApi(title) {
+
   return axios
     .get(`/api/resources/s/${title}`)
     .then(res => res.data)
