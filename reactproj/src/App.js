@@ -23,13 +23,12 @@ const App = () => {
            <Route path='/' exact>
            <Resources></Resources>
            </Route>
+           <Route path='/resources/new'>
+            <ResourceNew></ResourceNew>
+           </Route>
            {/*:id is to show in all path ids the same info. Also it will help resourcedetails params to identify which id we are refering to. */}
            <Route path='/resources/:id'>
             <ResourceDetails></ResourceDetails>
-           </Route>
-
-           <Route path='/resources/new'>
-            <ResourceNew></ResourceNew>
            </Route>
            <Route path='/about'>
            <About></About>

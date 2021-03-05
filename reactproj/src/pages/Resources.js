@@ -4,12 +4,12 @@ import ResourceList from '../components/ResourceList';
 import ResourceDetail from '../components/ResourceDetail';
 import ResourceUpdate from '../components/ResourceUpdate';
 
-import { getResources, deleteResourceApi } from '../actions';
+import { getResources, deleteResourceApi, useGetResource, useGetResources } from '../actions';
 
 
 const Resource = () => {
   const [selectedResource, setSetlectedResource] = useState();
-  const [resources, setResources] = useState([]);
+  const {resources, setResources, loading} = useGetResources();
   const [isDetailView, setDetailView] = useState(true);
 
 useEffect(() => {
@@ -82,6 +82,9 @@ useEffect(() => {
     }
   }
 
+
+
+
   const hasResources = resources && resources.length > 0;
   const activeResource = selectedResource || (hasResources && resources[0]) || null;
   //const activeResource = null;
@@ -94,10 +97,12 @@ useEffect(() => {
             <span className="badge badge-secondary badge-pill">{resources.length}</span>
           </h4>
           <ResourceSearch />
+          {loading ? 'loading resources':
           <ResourceList
             activeId={activeResource?._id}
             onItemClick={setSetlectedResource}
             resources={resources} />
+          }
          {/*<button onClick={addResource} className="btn btn-primary">Add Resource</button>*/}
         </div>
         <div className="col-md-8 order-md-1">
