@@ -1,6 +1,6 @@
 import React from 'react';
 
-const modal = ({isOpen, onClose}) => {
+const modal = ({isOpen, onClose, children}) => {
 
   if (isOpen) {
     return (
@@ -9,7 +9,8 @@ const modal = ({isOpen, onClose}) => {
           <span
             onClick={onClose}
             className="close">&times;</span>
-          <p>Some text in the Modal..</p>
+            {/*children is the setting form, letting know modal is passing a children. */}
+          <div>{children}</div>
         </div>
       </div>
     )
