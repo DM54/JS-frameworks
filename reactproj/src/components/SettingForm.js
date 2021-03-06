@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
 
-const SettingForm = ({onSubmit}) => {
+const SettingForm = ({onSubmit, settings: initialSettings}) => {
   //theme dark is the default value.
-  const [settings, setSettings] = useState({theme: 'dark', fontSize: ''});
+  const [settings, setSettings] = useState(initialSettings);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
