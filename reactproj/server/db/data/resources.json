@@ -1,0 +1,58 @@
+[
+  {
+    "_id": "1",
+    "title": "Form validation with Next.js/React part 2",
+    "description": "Learn how to validate custom input components with 'react hook form'",
+    "link": "https://www.youtube.com/watch?v=fm_UA4_0XBE",
+    "type": "video"
+  },
+  {
+    "_id": "2",
+    "title": "Updated Title",
+    "description": "Some Desc UPDATE",
+    "link": "https://eincode.com/blogs/learn-how-to-validate-custom-input-components-with-react-hook-form",
+    "type": "blog"
+  },
+  {
+    "_id": "3",
+    "title": "Setup project from Github",
+    "description": "Short guide how to setup a starting project in order to work on my tutorials.",
+    "link": "https://eincode.com/blogs/setup-project-from-github-repo",
+    "type": "blog"
+  },
+  {
+    "_id": "_7i21qyfem",
+    "title": "my new res",
+    "description": "new res created",
+    "link": "erokpg",
+    "type": "book"
+  },
+  {
+    "_id": "_kgay9vs2n",
+    "title": "new res 2",
+    "description": "new res 2 ",
+    "link": "qwd",
+    "type": "video"
+  },
+  {
+    "_id": "_cri72kg5n",
+    "title": "new res testing",
+    "description": "testing",
+    "link": "wer",
+    "type": "blog"
+  },
+  {
+    "_id": "_39dqr3ct6",
+    "title": "res test 2",
+    "description": "test 2",
+    "link": "qwer",
+    "type": "video"
+  },
+  {
+    "_id": "_aa2gwa93t",
+    "title": "test",
+    "description": "test",
+    "link": "wer",
+    "type": "video"
+  }
+]
