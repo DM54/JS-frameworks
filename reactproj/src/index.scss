@@ -3,6 +3,17 @@
     min-height: 100vh; //view height units
     background-color: #272727;
     color: white;
+    .resource-form.dark{
+      label{
+        color: white;
+      }
+
+    }
+
+    .resource{
+      color: white;
+    }
+
     label{
       color: black;
     }
@@ -12,6 +23,7 @@
     .resource-list.dark{
       color: black;
     }
+
 
   }
 }

@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {useParams} from 'react-router-dom';
+import serveStatic from 'serve-static';
 import {useGetResource, useGetResources} from '../actions/index';
+import {UseSetting} from '../context/SettingsProvider';
 
 const ResourceDetails = () =>{
   const {id} = useParams();
   const {resource, loading, error } = useGetResource(id);
+  const {settings} = UseSetting();
 
   if (loading){
     return 'is loading';
@@ -14,7 +17,7 @@ const ResourceDetails = () =>{
     return ' resource cannot load.';
   }
   return (
-    <div className="card">
+    <div className={`card ${settings?.theme}`} >
         <div className="card-header">
           {resource.title}
         </div>

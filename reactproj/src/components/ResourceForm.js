@@ -1,6 +1,7 @@
 
 
 import React, { useState, useEffect } from 'react';
+import {UseSetting} from '../context/SettingsProvider';
 const RESOURCE_TYPES = ['blog', 'video', 'book'];
 const BASE_RESOURCE = {
   title: '',
@@ -11,6 +12,7 @@ const BASE_RESOURCE = {
 
 const ResourceForm = ({resource, onSubmit, alert}) => {
   const [uResource, setUResource] = useState(resource || BASE_RESOURCE);
+  const {settings} = UseSetting();
 
   useEffect(() => {
     //checking if there are resources, if not then it is base resource which is empty string.
@@ -34,7 +36,7 @@ const ResourceForm = ({resource, onSubmit, alert}) => {
       { alert?.error &&
         <div className="alert alert-danger">{alert.error}</div>
       }
-      <form className="resource-form">
+      <form className={`resource-form ${settings?.theme}`}>
         <div className="mb-3">
           <label htmlFor="title">Title</label>
           <input
