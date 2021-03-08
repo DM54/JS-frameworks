@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
 import Modal from './shared/modal';
 import SettingForm from './SettingForm';
-import SettingsContext from '../App';
+import { UseSetting} from '../context/SettingsProvider';
 
 const SettingModal = () => {
-  const {settings, saveSettings} = useContext(SettingsContext);
+  const {settings, saveSettings} = UseSetting();
   const [isOpen, setisOpen] = useState(false);
 
   const handleSave = (settings) =>{

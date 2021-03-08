@@ -1,7 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {UseSetting} from '../context/SettingsProvider';
 
 const ResourceDetail = ({resource}) => {
+  const {settings} = UseSetting();
 
   if (!resource?._id) {
     return (
@@ -14,7 +16,7 @@ const ResourceDetail = ({resource}) => {
   }
 
   return (
-    <div className="card">
+    <div className={`card ${settings?.theme}`}>
         <div className="card-header">
           {resource.title}
         </div>

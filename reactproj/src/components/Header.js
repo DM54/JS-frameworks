@@ -4,7 +4,7 @@ import {NavLink} from 'react-router-dom';
 const Header = () => {
 
   return(
-    <div className="py-5 text-center">
+    <div className="py-5 text-center app-header">
     <img
     alt ='react logo'
     style={{height: '150px'}}
